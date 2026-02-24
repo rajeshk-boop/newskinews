@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: rajeshk-boop/newskinews
+  branch: main
+media_folder: "images"
+public_folder: "/images"
+collections:
+  - name: "news"
+    label: "News Articles"
+    folder: "news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Headline Hindi", name: "title_hi", widget: "string"}
+      - {label: "Headline English", name: "title_en", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["breaking","national","entertainment","sports","agriculture","jobs","youth","trending","regional"]}
+      - {label: "Image URL", name: "image", widget: "string"}
+      - {label: "Excerpt Hindi", name: "excerpt_hi", widget: "text"}
+      - {label: "Content Hindi", name: "content_hi", widget: "markdown"}
+      - {label: "Date", name: "date", widget: "datetime"}
