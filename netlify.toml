@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/newskinews_v3"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/newskinews_v3.html"
+  to = "/index.html"
+  status = 301
