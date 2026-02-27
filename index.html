@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
+<html lang="hi"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NewsKiNews - हर खबर के अंदर की खबर</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@400;500;600&amp;family=Noto+Sans+Devanagari:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root {
   --red: #E63946;
@@ -167,24 +165,110 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
 @media(max-width:1100px){.news-grid{grid-template-columns:1fr 1fr}.trending-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){main{padding:20px}.header-top{padding:10px 20px}.nav-inner{padding:0 20px}.hero-grid{grid-template-columns:1fr}.hero-main{grid-row:auto}.list-wrap{grid-template-columns:1fr}}
 @media(max-width:600px){.news-grid{grid-template-columns:1fr}.trending-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}}
-
-/* NEWS DETAIL MODAL */
-.news-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:2000; align-items:center; justify-content:center; padding:20px; }
-.news-modal.open { display:flex; }
-.nm-box { background:var(--card); border:1px solid var(--border); border-radius:20px; width:720px; max-width:96vw; max-height:90vh; overflow-y:auto; position:relative; }
-.nm-img { width:100%; height:320px; object-fit:cover; border-radius:20px 20px 0 0; display:block; }
-.nm-body { padding:28px; }
-.nm-badge { margin-bottom:12px; }
-.nm-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--text); line-height:1.4; margin-bottom:14px; }
-.nm-meta { display:flex; gap:20px; font-size:13px; color:var(--muted); margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
-.nm-content { font-size:15px; color:#ccc; line-height:1.85; }
-.nm-content p { margin-bottom:14px; }
-.nm-close { position:absolute; top:14px; right:14px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:50%; width:36px; height:36px; cursor:pointer; font-size:18px; color:white; display:flex; align-items:center; justify-content:center; z-index:10; }
-.nm-close:hover { background:var(--red); }
-
 </style>
-</head>
-<body>
+<style id="claude-agent-animation-styles">
+      @keyframes claude-pulse {
+        0% {
+          box-shadow: 
+            inset 0 0 10px rgba(217, 119, 87, 0.5),
+            inset 0 0 20px rgba(217, 119, 87, 0.3),
+            inset 0 0 30px rgba(217, 119, 87, 0.1);
+        }
+        50% {
+          box-shadow: 
+            inset 0 0 15px rgba(217, 119, 87, 0.7),
+            inset 0 0 25px rgba(217, 119, 87, 0.5),
+            inset 0 0 35px rgba(217, 119, 87, 0.2);
+        }
+        100% {
+          box-shadow: 
+            inset 0 0 10px rgba(217, 119, 87, 0.5),
+            inset 0 0 20px rgba(217, 119, 87, 0.3),
+            inset 0 0 30px rgba(217, 119, 87, 0.1);
+        }
+      }
+    </style><script>
+let currentLang = 'hi';
+
+const newsData = {
+  hi: [
+    {id:1,badge:'⚡ ब्रेकिंग',bc:'b-yellow',img:'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&q=80',title:'PM Modi ने किया बड़ा ऐलान — 2025 में किसानों की आमदनी होगी दोगुनी, नई कृषि नीति लागू',time:'🕐 2 घंटे पहले',views:'👁 1.2L views',content:'<p>नई दिल्ली: प्रधानमंत्री नरेंद्र मोदी ने आज ऐतिहासिक घोषणा करते हुए कहा कि 2025 तक किसानों की आमदनी दोगुनी करने का लक्ष्य पूरा किया जाएगा।</p><p>नई कृषि नीति के तहत किसानों को सीधे उनके बैंक खातों में सब्सिडी मिलेगी।</p>'},
+    {id:2,badge:'खेल',bc:'',img:'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=700&q=80',title:'IPL 2025: Rohit Sharma ने जड़ा शानदार शतक, MI की धमाकेदार जीत',time:'⏱ 1 घंटे पहले',views:'👁 45K',content:'<p>मुंबई: रोहित शर्मा ने 58 गेंदों में 104 रन बनाए। MI ने CSK को 5 विकेट से हराया।</p>'},
+    {id:3,badge:'नौकरी',bc:'b-blue',img:'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&q=80',title:'UPSC, SSC, Railway में 50,000 नई भर्तियां — आवेदन शुरू',time:'⏱ 3 घंटे पहले',views:'👁 98K',content:'<p>नई दिल्ली: UPSC, SSC और रेलवे में 50,000 से अधिक पदों पर भर्ती।</p>'},
+    {id:4,badge:'राष्ट्रीय',bc:'',img:'https://images.unsplash.com/photo-1555374018-13a8994ab246?w=700&q=80',title:'संसद में पास हुआ नया बिल — देश भर में होंगे बड़े बदलाव',time:'🕐 4 घंटे पहले',views:'👁 67K',content:'<p>नई दिल्ली: लोकसभा में ऐतिहासिक बिल पास हुआ।</p>'},
+    {id:5,badge:'अर्थव्यवस्था',bc:'b-orange',img:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&q=80',title:'GST में बड़ा बदलाव — 12% से घटाकर 8% होगा Tax',time:'🕐 5 घंटे पहले',views:'👁 1.1L',content:'<p>GST काउंसिल ने टैक्स 12% से 8% किया। 1 अप्रैल 2025 से लागू।</p>'},
+    {id:6,badge:'विज्ञान',bc:'b-purple',img:'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=700&q=80',title:'ISRO की बड़ी सफलता — Chandrayaan-4 की तैयारी शुरू',time:'🕐 6 घंटे पहले',views:'👁 2.3L',content:'<p>ISRO ने Chandrayaan-4 मिशन की घोषणा की। 2026 में लॉन्च होगा।</p>'},
+    {id:7,badge:'मनोरंजन',bc:'',img:'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=700&q=80',title:'Bollywood का सबसे बड़ा धमाका — 500 करोड़ का बजट',time:'🕐 1 घंटे पहले',views:'👁 5L',content:'<p>500 करोड़ के बजट वाली फिल्म ईद 2025 पर रिलीज होगी।</p>'},
+    {id:8,badge:'कृषि',bc:'b-green',img:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=700&q=80',title:'MSP में हुई बड़ी बढ़ोतरी — किसानों को फायदा',time:'🕐 2 घंटे पहले',views:'👁 3.2L',content:'<p>खरीफ फसलों के MSP में 10-15% बढ़ोतरी।</p>'},
+    {id:9,badge:'शिक्षा',bc:'b-blue',img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80',title:'IIT एडमिशन के नए नियम — लाखों छात्रों को फायदा',time:'🕐 3 घंटे पहले',views:'👁 4.5L',content:'<p>JEE Advanced में 75% marks की अनिवार्यता हटाई गई।</p>'},
+    {id:10,badge:'मनोरंजन',bc:'',img:'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=700&q=80',title:'Salman Khan की नई फिल्म का Teaser Release',time:'🕐 2 घंटे पहले',views:'👁 3.4L',content:'<p>सलमान की फिल्म का टीजर 6 घंटों में 3 करोड़ व्यूज पार।</p>'},
+    {id:11,badge:'मनोरंजन',bc:'',img:'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=700&q=80',title:'Bigg Boss 18 Grand Finale: Winner घोषित',time:'🕐 5 घंटे पहले',views:'👁 8.9L',content:'<p>Winner को 50 लाख रुपये की ट्रॉफी।</p>'},
+    {id:12,badge:'संगीत',bc:'',img:'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&q=80',title:'Diljit Dosanjh का नया गाना — 24 घंटे में 5 करोड़ व्यूज',time:'🕐 8 घंटे पहले',views:'👁 1.2L',content:'<p>YouTube पर Trending #1। 24 घंटे में 5 करोड़ व्यूज।</p>'},
+    {id:13,badge:'खेल',bc:'',img:'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=700&q=80',title:'Virat Kohli ने तोड़ा Sachin का Record — 100वां Century!',time:'🕐 1 घंटे पहले',views:'👁 15L',content:'<p>विराट ने 100वां अंतर्राष्ट्रीय शतक लगाकर सचिन का रिकॉर्ड तोड़ा।</p>'},
+    {id:14,badge:'कृषि',bc:'b-green',img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=700&q=80',title:'PM Kisan 18वीं किस्त जारी — 9.5 करोड़ किसानों को पैसे',time:'🕐 2 घंटे पहले',views:'👁 4.5L',content:'<p>9.5 करोड़ किसानों को ₹2000 डायरेक्ट ट्रांसफर।</p>'},
+    {id:15,badge:'मौसम',bc:'b-orange',img:'https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=700&q=80',title:'Monsoon 2025: जमकर होगी बारिश — IMD Alert',time:'🕐 4 घंटे पहले',views:'👁 1.8L',content:'<p>IMD ने 8% अधिक बारिश का अनुमान लगाया है।</p>'},
+    {id:16,badge:'पशुपालन',bc:'b-green',img:'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=700&q=80',title:'Dairy Farming: नई Scheme से मिलेगी 5 लाख तक की Subsidy',time:'🕐 7 घंटे पहले',views:'👁 92K',content:'<p>5+ गाय/भैंस रखने वाले किसानों को ₹5 लाख तक सब्सिडी।</p>'},
+    {id:17,badge:'सरकारी नौकरी',bc:'b-blue',img:'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=700&q=80',title:'Railway Recruitment 2025: 35,000 पद — 10वीं पास भी Apply करें',time:'🕐 3 घंटे पहले',views:'👁 5.6L',content:'<p>RRB ने 35,281 पदों की अधिसूचना जारी की।</p>'},
+    {id:18,badge:'रक्षा',bc:'b-green',img:'https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=700&q=80',title:'Indian Army Agniveer 2025: Notification जारी',time:'🕐 5 घंटे पहले',views:'👁 3.2L',content:'<p>40,000 पद। आयु 17.5-21 वर्ष। आवेदन शुरू।</p>'},
+    {id:19,badge:'प्राइवेट जॉब',bc:'b-orange',img:'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80',title:'TCS, Infosys, Wipro में 1 लाख+ नौकरियां — सैलरी 4-8 LPA',time:'🕐 8 घंटे पहले',views:'👁 7.8L',content:'<p>2025 में 1 लाख+ freshers hire होंगे।</p>'}
+  ]
+};
+
+// Add modal HTML if not exists
+if (!document.getElementById('newsModal')) {
+  document.body.insertAdjacentHTML('beforeend', `
+  <style>
+  .news-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px}
+  .news-modal.open{display:flex}
+  .nm-box{background:#1a1d23;border:1px solid #2a2f3a;border-radius:20px;width:720px;max-width:96vw;max-height:90vh;overflow-y:auto;position:relative}
+  .nm-img{width:100%;height:300px;object-fit:cover;border-radius:20px 20px 0 0;display:block}
+  .nm-body{padding:28px}
+  .nm-title{font-size:22px;font-weight:900;color:#f0f0f0;line-height:1.4;margin:10px 0 14px;font-family:'Playfair Display',serif}
+  .nm-meta{display:flex;gap:20px;font-size:13px;color:#8a8f9e;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #2a2f3a;flex-wrap:wrap}
+  .nm-content{font-size:15px;color:#ccc;line-height:1.85}
+  .nm-content p{margin-bottom:14px}
+  .nm-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,0.7);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:20px;color:white;display:flex;align-items:center;justify-content:center}
+  </style>
+  <div class="news-modal" id="newsModal">
+    <div class="nm-box">
+      <button class="nm-close" onclick="closeNews()">✕</button>
+      <img id="nmImg" class="nm-img" src="" alt="">
+      <div class="nm-body">
+        <div style="margin-bottom:10px"><span id="nmBadge" class="badge">News</span></div>
+        <div id="nmTitle" class="nm-title"></div>
+        <div class="nm-meta"><span id="nmTime"></span><span>✍️ NewsKiNews Desk</span><span id="nmViews"></span></div>
+        <div id="nmContent" class="nm-content"></div>
+      </div>
+    </div>
+  </div>`);
+  
+  document.getElementById('newsModal').addEventListener('click', function(e){ if(e.target===this) closeNews(); });
+}
+
+function openNews(id) {
+  const data = newsData[currentLang] || newsData.hi;
+  const item = data.find(n => n.id === id);
+  if (!item) return;
+  document.getElementById('nmImg').src = item.img;
+  const b = document.getElementById('nmBadge');
+  b.textContent = item.badge;
+  b.className = 'badge ' + (item.bc || '');
+  document.getElementById('nmTitle').textContent = item.title;
+  document.getElementById('nmTime').textContent = item.time;
+  document.getElementById('nmViews').textContent = item.views;
+  document.getElementById('nmContent').innerHTML = item.content;
+  document.getElementById('newsModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNews() {
+  document.getElementById('newsModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeNews(); });
+</script></head>
+<body style="">
 
 <!-- TICKER -->
 <div class="ticker-bar">
@@ -242,9 +326,8 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
 
   <!-- HERO -->
   <div class="hero-grid">
-    <div class="hero-main" onclick="openNews(1)" style="cursor:pointer;">
-      <img class="img-cover" src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&q=80" alt="PM Modi India"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="hero-main" onclick="openNews(1)" style="cursor: pointer;">
+      <img class="img-cover" src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&amp;q=80" alt="PM Modi India" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="img-fallback" style="display:none;background:linear-gradient(135deg,#1a1a2e,#0f3460);height:440px;">🇮🇳</div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -258,10 +341,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
       </div>
     </div>
 
-    <div class="side-card" onclick="openNews(2)">
+    <div class="side-card" onclick="openNews(2)" style="cursor: pointer;">
       <div class="side-img-wrap">
-        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400&q=80" alt="Cricket IPL"
-             onerror="this.style.background='linear-gradient(135deg,#1a0a00,#3d1c00)';this.style.display='none'">
+        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400&amp;q=80" alt="Cricket IPL" onerror="this.style.background='linear-gradient(135deg,#1a0a00,#3d1c00)';this.style.display='none'">
       </div>
       <div class="side-body">
         <span class="badge" data-hi="खेल" data-en="Sports">खेल</span>
@@ -270,10 +352,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
       </div>
     </div>
 
-    <div class="side-card" onclick="openNews(3)">
+    <div class="side-card" onclick="openNews(3)" style="cursor: pointer;">
       <div class="side-img-wrap">
-        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&q=80" alt="Jobs Career"
-             onerror="this.style.display='none'">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&amp;q=80" alt="Jobs Career" onerror="this.style.display='none'">
       </div>
       <div class="side-body">
         <span class="badge b-blue" data-hi="नौकरी" data-en="Jobs">नौकरी</span>
@@ -290,36 +371,36 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
       <a href="#" class="see-all" data-hi="सभी देखें →" data-en="See all →">सभी देखें →</a>
     </div>
     <div class="trending-grid">
-      <div class="trend-card" onclick="openNews(7)">
-        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80" alt="Bollywood" onerror="this.style.display='none'">
+      <div class="trend-card" onclick="openNews(7)" style="cursor: pointer;">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&amp;q=80" alt="Bollywood" onerror="this.style.display='none'">
         <div class="trend-overlay">
           <div class="trend-num">01</div>
           <div class="trend-title" data-hi="Bollywood का सबसे बड़ा धमाका" data-en="Bollywood's Biggest Blockbuster">Bollywood का सबसे बड़ा धमाका</div>
         </div>
       </div>
-      <div class="trend-card" onclick="openNews(8)">
-        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&q=80" alt="Agriculture Farming" onerror="this.style.display='none'">
+      <div class="trend-card" onclick="openNews(8)" style="cursor: pointer;">
+        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&amp;q=80" alt="Agriculture Farming" onerror="this.style.display='none'">
         <div class="trend-overlay">
           <div class="trend-num">02</div>
           <div class="trend-title" data-hi="MSP में हुई बड़ी बढ़ोतरी" data-en="Major Hike in MSP Rates">MSP में हुई बड़ी बढ़ोतरी</div>
         </div>
       </div>
-      <div class="trend-card" onclick="openNews(9)">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&q=80" alt="Education IIT" onerror="this.style.display='none'">
+      <div class="trend-card" onclick="openNews(9)" style="cursor: pointer;">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&amp;q=80" alt="Education IIT" onerror="this.style.display='none'" style="display: none;">
         <div class="trend-overlay">
           <div class="trend-num">03</div>
           <div class="trend-title" data-hi="IIT एडमिशन के नए नियम" data-en="New IIT Admission Rules">IIT एडमिशन के नए नियम</div>
         </div>
       </div>
-      <div class="trend-card" onclick="openNews(2)">
-        <img src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=400&q=80" alt="Cricket India Australia" onerror="this.style.display='none'">
+      <div class="trend-card" onclick="openNews(2)" style="cursor: pointer;">
+        <img src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=400&amp;q=80" alt="Cricket India Australia" onerror="this.style.display='none'">
         <div class="trend-overlay">
           <div class="trend-num">04</div>
           <div class="trend-title" data-hi="India vs Australia सीरीज" data-en="India vs Australia Series">India vs Australia सीरीज</div>
         </div>
       </div>
-      <div class="trend-card" onclick="openNews(5)">
-        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80" alt="iPhone Technology" onerror="this.style.display='none'">
+      <div class="trend-card" onclick="openNews(5)" style="cursor: pointer;">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&amp;q=80" alt="iPhone Technology" onerror="this.style.display='none'">
         <div class="trend-overlay">
           <div class="trend-num">05</div>
           <div class="trend-title" data-hi="iPhone 17 Launch Date Fix" data-en="iPhone 17 Launch Date Fixed">iPhone 17 Launch Date Fix</div>
@@ -335,9 +416,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
       <a href="#" class="see-all" data-hi="सभी देखें →" data-en="See all →">सभी देखें →</a>
     </div>
     <div class="news-grid">
-      <div class="news-card" onclick="openNews(4)">
+      <div class="news-card" onclick="openNews(4)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1555374018-13a8994ab246?w=600&q=80" alt="Parliament India" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1555374018-13a8994ab246?w=600&amp;q=80" alt="Parliament India" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge" data-hi="राष्ट्रीय" data-en="National">राष्ट्रीय</span>
@@ -346,9 +427,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
           <div class="nc-footer"><span data-hi="🕐 4 घंटे पहले" data-en="🕐 4 hours ago">🕐 4 घंटे पहले</span><span>👁 67K</span></div>
         </div>
       </div>
-      <div class="news-card" onclick="openNews(5)">
+      <div class="news-card" onclick="openNews(5)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80" alt="Stock Market Economy" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&amp;q=80" alt="Stock Market Economy" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-orange" data-hi="अर्थव्यवस्था" data-en="Economy">अर्थव्यवस्था</span>
@@ -357,9 +438,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
           <div class="nc-footer"><span data-hi="🕐 5 घंटे पहले" data-en="🕐 5 hours ago">🕐 5 घंटे पहले</span><span>👁 1.1L</span></div>
         </div>
       </div>
-      <div class="news-card" onclick="openNews(6)">
+      <div class="news-card" onclick="openNews(6)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=600&q=80" alt="ISRO Space Mission" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=600&amp;q=80" alt="ISRO Space Mission" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-purple" data-hi="विज्ञान" data-en="Science">विज्ञान</span>
@@ -378,29 +459,29 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
         <div class="section-title" data-hi="🎬 मनोरंजन" data-en="🎬 Entertainment">🎬 मनोरंजन</div>
         <a href="#" class="see-all" data-hi="सभी →" data-en="All →">सभी →</a>
       </div>
-      <div class="list-item" onclick="openNews(10)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=200&q=80" alt="Bollywood Movie" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(10)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=200&amp;q=80" alt="Bollywood Movie" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Salman Khan की नई फिल्म का Teaser Release, फैंस में जबरदस्त प्रतिक्रिया" data-en="Salman Khan's new film teaser released, massive fan reaction">Salman Khan की नई फिल्म का Teaser Release, फैंस में जबरदस्त प्रतिक्रिया</div>
           <div class="li-meta" data-hi="🕐 2 घंटे पहले • 3.4L views" data-en="🕐 2 hours ago • 3.4L views">🕐 2 घंटे पहले • 3.4L views</div>
         </div>
       </div>
-      <div class="list-item" onclick="openNews(11)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=200&q=80" alt="TV Reality Show" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(11)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=200&amp;q=80" alt="TV Reality Show" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Bigg Boss 18: Grand Finale में बड़ा ट्विस्ट, Winner का नाम" data-en="Bigg Boss 18: Big twist in Grand Finale, Winner announced">Bigg Boss 18: Grand Finale में बड़ा ट्विस्ट, Winner का नाम</div>
           <div class="li-meta" data-hi="🕐 5 घंटे पहले • 8.9L views" data-en="🕐 5 hours ago • 8.9L views">🕐 5 घंटे पहले • 8.9L views</div>
         </div>
       </div>
-      <div class="list-item" onclick="openNews(12)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&q=80" alt="Music Concert Diljit" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(12)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&amp;q=80" alt="Music Concert Diljit" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Diljit Dosanjh का नया गाना — 24 घंटे में 5 करोड़ व्यूज" data-en="Diljit Dosanjh's new song — 5 crore views in 24 hours">Diljit Dosanjh का नया गाना — 24 घंटे में 5 करोड़ व्यूज</div>
           <div class="li-meta" data-hi="🕐 8 घंटे पहले • 1.2L views" data-en="🕐 8 hours ago • 1.2L views">🕐 8 घंटे पहले • 1.2L views</div>
         </div>
       </div>
-      <div class="list-item" onclick="openNews(7)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=200&q=80" alt="Oscars Award" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(7)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=200&amp;q=80" alt="Oscars Award" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Oscars 2025: RRR की Legacy — हॉलीवुड में भारतीय फिल्मों की धमक" data-en="Oscars 2025: RRR's Legacy — Indian cinema's global impact">Oscars 2025: RRR की Legacy — हॉलीवुड में भारतीय फिल्मों की धमक</div>
           <div class="li-meta" data-hi="🕐 1 दिन पहले • 56K views" data-en="🕐 1 day ago • 56K views">🕐 1 दिन पहले • 56K views</div>
@@ -413,29 +494,29 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
         <div class="section-title" data-hi="🏏 खेल" data-en="🏏 Sports">🏏 खेल</div>
         <a href="#" class="see-all" data-hi="सभी →" data-en="All →">सभी →</a>
       </div>
-      <div class="list-item" onclick="openNews(13)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=200&q=80" alt="Cricket Virat Kohli" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(13)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=200&amp;q=80" alt="Cricket Virat Kohli" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Virat Kohli ने तोड़ा Sachin का Record — 100वां International Century!" data-en="Virat Kohli breaks Sachin's record — 100th International Century!">Virat Kohli ने तोड़ा Sachin का Record — 100वां International Century!</div>
           <div class="li-meta" data-hi="🕐 1 घंटे पहले • 15L views" data-en="🕐 1 hour ago • 15L views">🕐 1 घंटे पहले • 15L views</div>
         </div>
       </div>
-      <div class="list-item" onclick="openNews(2)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=200&q=80" alt="Football FIFA" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(2)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=200&amp;q=80" alt="Football FIFA" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="FIFA World Cup 2026: Team India की तैयारी, 5 खिलाड़ी चयनित" data-en="FIFA World Cup 2026: Team India's preparation, 5 players selected">FIFA World Cup 2026: Team India की तैयारी, 5 खिलाड़ी चयनित</div>
           <div class="li-meta" data-hi="🕐 3 घंटे पहले • 89K views" data-en="🕐 3 hours ago • 89K views">🕐 3 घंटे पहले • 89K views</div>
         </div>
       </div>
-      <div class="list-item" onclick="openNews(8)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=200&q=80" alt="Athletics Neeraj Chopra" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(8)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=200&amp;q=80" alt="Athletics Neeraj Chopra" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Neeraj Chopra ने किया कमाल — World Athletics में Gold Medal" data-en="Neeraj Chopra shines — Gold Medal at World Athletics">Neeraj Chopra ने किया कमाल — World Athletics में Gold Medal</div>
           <div class="li-meta" data-hi="🕐 6 घंटे पहले • 2.1L views" data-en="🕐 6 hours ago • 2.1L views">🕐 6 घंटे पहले • 2.1L views</div>
         </div>
       </div>
-      <div class="list-item" onclick="openNews(9)">
-        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=200&q=80" alt="Badminton" onerror="this.style.display='none'"></div>
+      <div class="list-item" onclick="openNews(9)" style="cursor: pointer;">
+        <div class="li-img-wrap"><img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=200&amp;q=80" alt="Badminton" onerror="this.style.display='none'"></div>
         <div class="li-body">
           <div class="li-title" data-hi="Indian Premier Badminton League का Schedule जारी" data-en="Indian Premier Badminton League Schedule Released">Indian Premier Badminton League का Schedule जारी</div>
           <div class="li-meta" data-hi="🕐 10 घंटे पहले • 34K views" data-en="🕐 10 hours ago • 34K views">🕐 10 घंटे पहले • 34K views</div>
@@ -451,9 +532,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
       <a href="#" class="see-all" data-hi="सभी देखें →" data-en="See all →">सभी देखें →</a>
     </div>
     <div class="news-grid">
-      <div class="news-card" onclick="openNews(10)">
+      <div class="news-card" onclick="openNews(14)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80" alt="Farmer India Agriculture" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&amp;q=80" alt="Farmer India Agriculture" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-green" data-hi="कृषि" data-en="Agriculture">कृषि</span>
@@ -462,9 +543,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
           <div class="nc-footer"><span data-hi="🕐 2 घंटे पहले" data-en="🕐 2 hours ago">🕐 2 घंटे पहले</span><span>👁 4.5L</span></div>
         </div>
       </div>
-      <div class="news-card" onclick="openNews(11)">
+      <div class="news-card" onclick="openNews(15)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=600&q=80" alt="Monsoon Rain India" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=600&amp;q=80" alt="Monsoon Rain India" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-orange" data-hi="मौसम" data-en="Weather">मौसम</span>
@@ -473,9 +554,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
           <div class="nc-footer"><span data-hi="🕐 4 घंटे पहले" data-en="🕐 4 hours ago">🕐 4 घंटे पहले</span><span>👁 1.8L</span></div>
         </div>
       </div>
-      <div class="news-card" onclick="openNews(12)">
+      <div class="news-card" onclick="openNews(16)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=600&q=80" alt="Dairy Farm Cow" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=600&amp;q=80" alt="Dairy Farm Cow" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-green" data-hi="पशुपालन" data-en="Farming">पशुपालन</span>
@@ -490,13 +571,13 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
   <!-- JOBS -->
   <div class="news-section">
     <div class="section-hdr">
-      <div class="section-title" data-hi="💼 नौकरी & करियर" data-en="💼 Jobs & Career">💼 नौकरी & करियर</div>
+      <div class="section-title" data-hi="💼 नौकरी &amp; करियर" data-en="💼 Jobs &amp; Career">💼 नौकरी &amp; करियर</div>
       <a href="#" class="see-all" data-hi="सभी देखें →" data-en="See all →">सभी देखें →</a>
     </div>
     <div class="news-grid">
-      <div class="news-card" onclick="openNews(13)">
+      <div class="news-card" onclick="openNews(17)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&q=80" alt="Railway Train India" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&amp;q=80" alt="Railway Train India" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-blue" data-hi="सरकारी नौकरी" data-en="Govt Job">सरकारी नौकरी</span>
@@ -505,9 +586,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
           <div class="nc-footer"><span data-hi="🕐 3 घंटे पहले" data-en="🕐 3 hours ago">🕐 3 घंटे पहले</span><span>👁 5.6L</span></div>
         </div>
       </div>
-      <div class="news-card" onclick="openNews(14)">
+      <div class="news-card" onclick="openNews(18)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=600&q=80" alt="Indian Army Military" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=600&amp;q=80" alt="Indian Army Military" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-green" data-hi="रक्षा" data-en="Defence">रक्षा</span>
@@ -516,9 +597,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
           <div class="nc-footer"><span data-hi="🕐 5 घंटे पहले" data-en="🕐 5 hours ago">🕐 5 घंटे पहले</span><span>👁 3.2L</span></div>
         </div>
       </div>
-      <div class="news-card" onclick="openNews(15)">
+      <div class="news-card" onclick="openNews(19)" style="cursor: pointer;">
         <div class="nc-img-wrap">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80" alt="IT Tech Jobs Office" onerror="this.style.display='none'">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&amp;q=80" alt="IT Tech Jobs Office" onerror="this.style.display='none'">
         </div>
         <div class="nc-body">
           <span class="badge b-orange" data-hi="प्राइवेट जॉब" data-en="Private Jobs">प्राइवेट जॉब</span>
@@ -633,153 +714,96 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
   </div>
 </div>
 
-
-
-<!-- NEWS DETAIL MODAL -->
-<div class="news-modal" id="newsModal">
-  <div class="nm-box">
-    <button class="nm-close" onclick="closeNews()">✕</button>
-    <img id="nmImg" class="nm-img" src="" alt="">
-    <div class="nm-body">
-      <div class="nm-badge"><span id="nmBadge" class="badge">News</span></div>
-      <div id="nmTitle" class="nm-title"></div>
-      <div class="nm-meta">
-        <span id="nmTime"></span>
-        <span>✍️ NewsKiNews Desk</span>
-        <span id="nmViews"></span>
-      </div>
-      <div id="nmContent" class="nm-content"></div>
-    </div>
-  </div>
-</div>
-
 <script>
+// ========== LANGUAGE SYSTEM ==========
 let currentLang = 'hi';
 
-// NEWS DATA
-const newsData = {
-  hi: [
-    {id:1,badge:'⚡ ब्रेकिंग',bc:'b-yellow',img:'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&q=80',title:'PM Modi ने किया बड़ा ऐलान — 2025 में किसानों की आमदनी होगी दोगुनी, नई कृषि नीति लागू',time:'🕐 2 घंटे पहले',views:'👁 1.2L views',content:'<p>नई दिल्ली: प्रधानमंत्री नरेंद्र मोदी ने आज ऐतिहासिक घोषणा करते हुए कहा कि 2025 तक किसानों की आमदनी दोगुनी करने का लक्ष्य पूरा किया जाएगा।</p><p>नई कृषि नीति के तहत किसानों को सीधे उनके बैंक खातों में सब्सिडी मिलेगी। 50,000 करोड़ रुपये का विशेष कृषि विकास कोष भी बनाया है।</p>'},
-    {id:2,badge:'खेल',bc:'',img:'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=700&q=80',title:'IPL 2025: Rohit Sharma ने जड़ा शानदार शतक, MI की धमाकेदार जीत',time:'⏱ 1 घंटे पहले',views:'👁 45K',content:'<p>मुंबई: IPL 2025 में रोहित शर्मा ने मात्र 58 गेंदों में 104 रन बनाए। MI ने CSK को 5 विकेट से हराया।</p>'},
-    {id:3,badge:'नौकरी',bc:'b-blue',img:'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&q=80',title:'UPSC, SSC, Railway में 50,000 नई भर्तियां — आवेदन शुरू',time:'⏱ 3 घंटे पहले',views:'👁 98K',content:'<p>नई दिल्ली: UPSC, SSC और रेलवे में 50,000 से अधिक पदों पर भर्ती। अंतिम तिथि 31 मार्च 2025।</p>'},
-    {id:4,badge:'राष्ट्रीय',bc:'',img:'https://images.unsplash.com/photo-1555374018-13a8994ab246?w=700&q=80',title:'संसद में पास हुआ नया बिल — देश भर में होंगे बड़े बदलाव',time:'🕐 4 घंटे पहले',views:'👁 67K',content:'<p>नई दिल्ली: लोकसभा में ऐतिहासिक बिल पास हुआ। डिजिटल इंफ्रास्ट्रक्चर, ग्रामीण इंटरनेट और रोजगार के नए अवसर मुख्य प्रावधान हैं।</p>'},
-    {id:5,badge:'अर्थव्यवस्था',bc:'b-orange',img:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&q=80',title:'GST में बड़ा बदलाव — 12% से घटाकर 8% होगा Tax',time:'🕐 5 घंटे पहले',views:'👁 1.1L',content:'<p>GST काउंसिल ने आवश्यक वस्तुओं पर टैक्स 12% से 8% किया। 1 अप्रैल 2025 से लागू होगा।</p>'},
-    {id:6,badge:'विज्ञान',bc:'b-purple',img:'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=700&q=80',title:'ISRO की बड़ी सफलता — Chandrayaan-4 की तैयारी शुरू',time:'🕐 6 घंटे पहले',views:'👁 2.3L',content:'<p>ISRO ने Chandrayaan-4 की घोषणा की। 2026 में लॉन्च होगा, चंद्रमा की मिट्टी वापस लाएगा।</p>'},
-    {id:7,badge:'मनोरंजन',bc:'',img:'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=700&q=80',title:'Bollywood का सबसे बड़ा धमाका — 500 करोड़ का बजट',time:'🕐 1 घंटे पहले',views:'👁 5L',content:'<p>इस साल की सबसे बड़ी फिल्म का ट्रेलर वायरल। 500 करोड़ के बजट वाली फिल्म ईद 2025 पर रिलीज होगी।</p>'},
-    {id:8,badge:'कृषि',bc:'b-green',img:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=700&q=80',title:'MSP में हुई बड़ी बढ़ोतरी — किसानों को मिलेगा फायदा',time:'🕐 2 घंटे पहले',views:'👁 3.2L',content:'<p>सरकार ने खरीफ फसलों के MSP में 10-15% बढ़ोतरी की। धान का MSP 250 रुपये प्रति क्विंटल बढ़ा।</p>'},
-    {id:9,badge:'शिक्षा',bc:'b-blue',img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80',title:'IIT एडमिशन के नए नियम — लाखों छात्रों को फायदा',time:'🕐 3 घंटे पहले',views:'👁 4.5L',content:'<p>JEE Advanced में 75% marks की अनिवार्यता हटाई गई। लाखों छात्रों को IIT में मौका मिलेगा।</p>'},
-    {id:10,badge:'मनोरंजन',bc:'',img:'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=700&q=80',title:'Salman Khan की नई फिल्म का Teaser Release, फैंस में जबरदस्त प्रतिक्रिया',time:'🕐 2 घंटे पहले',views:'👁 3.4L',content:'<p>सलमान खान की फिल्म का टीजर 6 घंटों में 3 करोड़ व्यूज पार कर गया।</p>'},
-    {id:11,badge:'मनोरंजन',bc:'',img:'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=700&q=80',title:'Bigg Boss 18: Grand Finale में बड़ा ट्विस्ट, Winner घोषित',time:'🕐 5 घंटे पहले',views:'👁 8.9L',content:'<p>Bigg Boss 18 Finale में Winner को 50 लाख रुपये की ट्रॉफी मिली।</p>'},
-    {id:12,badge:'संगीत',bc:'',img:'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&q=80',title:'Diljit Dosanjh का नया गाना — 24 घंटे में 5 करोड़ व्यूज',time:'🕐 8 घंटे पहले',views:'👁 1.2L',content:'<p>Diljit का नया गाना YouTube पर Trending #1 है। 24 घंटे में 5 करोड़ व्यूज।</p>'},
-    {id:13,badge:'खेल',bc:'',img:'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=700&q=80',title:'Virat Kohli ने तोड़ा Sachin का Record — 100वां Century!',time:'🕐 1 घंटे पहले',views:'👁 15L',content:'<p>विराट कोहली ने 100वां अंतर्राष्ट्रीय शतक लगाकर सचिन का रिकॉर्ड तोड़ा।</p>'},
-    {id:14,badge:'कृषि',bc:'b-green',img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=700&q=80',title:'PM Kisan 18वीं किस्त जारी — 9.5 करोड़ किसानों के खाते में पैसे',time:'🕐 2 घंटे पहले',views:'👁 4.5L',content:'<p>9.5 करोड़ किसानों को ₹2000-2000 रुपये डायरेक्ट ट्रांसफर। कुल 19,000 करोड़ जारी।</p>'},
-    {id:15,badge:'मौसम',bc:'b-orange',img:'https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=700&q=80',title:'Monsoon 2025: जमकर होगी बारिश — IMD Alert जारी',time:'🕐 4 घंटे पहले',views:'👁 1.8L',content:'<p>IMD ने 2025 में 8% अधिक बारिश का अनुमान लगाया है।</p>'},
-    {id:16,badge:'पशुपालन',bc:'b-green',img:'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=700&q=80',title:'Dairy Farming: नई Scheme से मिलेगी 5 लाख तक की Subsidy',time:'🕐 7 घंटे पहले',views:'👁 92K',content:'<p>5+ गाय/भैंस रखने वाले किसानों को ₹5 लाख तक सब्सिडी। आवेदन 15 मार्च से।</p>'},
-    {id:17,badge:'सरकारी नौकरी',bc:'b-blue',img:'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=700&q=80',title:'Railway Recruitment 2025: 35,000 पद — 10वीं पास भी Apply करें',time:'🕐 3 घंटे पहले',views:'👁 5.6L',content:'<p>RRB ने 35,281 पदों की अधिसूचना जारी की। Group D, ALP, Technician। Online form 1 मार्च से।</p>'},
-    {id:18,badge:'रक्षा',bc:'b-green',img:'https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=700&q=80',title:'Indian Army Agniveer 2025: Notification जारी',time:'🕐 5 घंटे पहले',views:'👁 3.2L',content:'<p>भारतीय सेना ने Agniveer 2025 नोटिफिकेशन जारी किया। 40,000 पद। आयु 17.5-21 वर्ष।</p>'},
-    {id:19,badge:'प्राइवेट जॉब',bc:'b-orange',img:'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80',title:'TCS, Infosys, Wipro में 1 लाख+ नौकरियां — सैलरी 4-8 LPA',time:'🕐 8 घंटे पहले',views:'👁 7.8L',content:'<p>TCS, Infosys और Wipro 2025 में 1 लाख+ freshers hire करेंगी। B.Tech/BCA/MCA वाले apply करें।</p>'}
-  ],
-  en: [
-    {id:1,badge:'⚡ Breaking',bc:'b-yellow',img:'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&q=80',title:"PM Modi's Big Announcement — Farmers' Income to Double by 2025",time:'🕐 2 hours ago',views:'👁 1.2L views',content:"<p>New Delhi: PM Modi announced doubling farmers' income by 2025 with a new agricultural policy. Subsidies will go directly to bank accounts. A special Rs 50,000 crore Agriculture Development Fund has been created.</p>"},
-    {id:2,badge:'Sports',bc:'',img:'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=700&q=80',title:'IPL 2025: Rohit Sharma hits brilliant century, MI wins thrillingly',time:'⏱ 1 hour ago',views:'👁 45K',content:'<p>Mumbai: Rohit Sharma scored 104 off 58 balls with 9 fours and 6 sixes. MI defeated CSK by 5 wickets.</p>'},
-    {id:3,badge:'Jobs',bc:'b-blue',img:'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&q=80',title:'50,000 new vacancies in UPSC, SSC, Railway — Apply now',time:'⏱ 3 hours ago',views:'👁 98K',content:'<p>Central Government announced over 50,000 posts. Last date March 31, 2025.</p>'},
-    {id:4,badge:'National',bc:'',img:'https://images.unsplash.com/photo-1555374018-13a8994ab246?w=700&q=80',title:'New Bill Passed in Parliament — Major Changes Across India',time:'🕐 4 hours ago',views:'👁 67K',content:'<p>A historic bill was passed in Lok Sabha covering digital infrastructure, rural internet and new employment.</p>'},
-    {id:5,badge:'Economy',bc:'b-orange',img:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&q=80',title:'Big GST Change — Tax Reduced from 12% to 8%',time:'🕐 5 hours ago',views:'👁 1.1L',content:'<p>GST Council reduced tax on essential items. Effective April 1, 2025.</p>'},
-    {id:6,badge:'Science',bc:'b-purple',img:'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=700&q=80',title:"ISRO's Big Success — Chandrayaan-4 Preparations Begin",time:'🕐 6 hours ago',views:'👁 2.3L',content:'<p>ISRO announced Chandrayaan-4 launching in 2026, bringing moon soil samples back to Earth.</p>'},
-    {id:7,badge:'Entertainment',bc:'',img:'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=700&q=80',title:"Bollywood's Biggest Blockbuster — Rs 500 Crore Budget",time:'🕐 1 hour ago',views:'👁 5L',content:'<p>The trailer of this year biggest Bollywood film went viral. Releases on Eid 2025 with a Rs 500 crore budget.</p>'},
-    {id:8,badge:'Agriculture',bc:'b-green',img:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=700&q=80',title:'Major Hike in MSP Rates — Farmers to Benefit',time:'🕐 2 hours ago',views:'👁 3.2L',content:'<p>Government announced 10-15% MSP hike for kharif crops. Paddy MSP increased by Rs 250 per quintal.</p>'},
-    {id:9,badge:'Education',bc:'b-blue',img:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80',title:'New IIT Admission Rules — Lakhs of Students to Benefit',time:'🕐 3 hours ago',views:'👁 4.5L',content:'<p>The mandatory 75% marks requirement in JEE Advanced has been removed, benefiting lakhs of students.</p>'},
-    {id:10,badge:'Entertainment',bc:'',img:'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=700&q=80',title:"Salman Khan's new film teaser released, massive fan reaction",time:'🕐 2 hours ago',views:'👁 3.4L',content:"<p>Salman Khan's film teaser crossed 3 crore views in 6 hours. Film releases on Eid 2025.</p>"},
-    {id:11,badge:'Entertainment',bc:'',img:'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=700&q=80',title:'Bigg Boss 18: Big twist in Grand Finale, Winner announced',time:'🕐 5 hours ago',views:'👁 8.9L',content:'<p>Bigg Boss 18 winner received Rs 50 lakh trophy. Several shocking twists in the finale.</p>'},
-    {id:12,badge:'Music',bc:'',img:'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&q=80',title:"Diljit Dosanjh's new song — 5 crore views in 24 hours",time:'🕐 8 hours ago',views:'👁 1.2L',content:'<p>Diljit new song is trending number 1 on YouTube with 5 crore views in 24 hours.</p>'},
-    {id:13,badge:'Sports',bc:'',img:'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=700&q=80',title:"Virat Kohli breaks Sachin's record — 100th International Century!",time:'🕐 1 hour ago',views:'👁 15L',content:"<p>Virat Kohli scored his 100th international century, breaking Sachin Tendulkar historic record.</p>"},
-    {id:14,badge:'Agriculture',bc:'b-green',img:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=700&q=80',title:'PM Kisan 18th installment released — 9.5 crore farmers paid',time:'🕐 2 hours ago',views:'👁 4.5L',content:'<p>Rs 2000 each transferred to 9.5 crore farmers. Total Rs 19,000 crore released in one day.</p>'},
-    {id:15,badge:'Weather',bc:'b-orange',img:'https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=700&q=80',title:'Monsoon 2025: Heavy rain expected — IMD Alert',time:'🕐 4 hours ago',views:'👁 1.8L',content:'<p>IMD predicts 8% above-normal rainfall in 2025. Monsoon may hit Kerala in first week of June.</p>'},
-    {id:16,badge:'Farming',bc:'b-green',img:'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?w=700&q=80',title:'Dairy Farming: New Scheme offers Subsidy up to Rs 5 Lakh',time:'🕐 7 hours ago',views:'👁 92K',content:'<p>Farmers with 5 or more cows/buffaloes eligible for up to Rs 5 lakh subsidy. Applications start March 15.</p>'},
-    {id:17,badge:'Govt Job',bc:'b-blue',img:'https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=700&q=80',title:'Railway Recruitment 2025: 35,000 posts — 10th pass eligible',time:'🕐 3 hours ago',views:'👁 5.6L',content:'<p>RRB released notification for 35,281 posts including Group D, ALP and Technician. Online forms from March 1.</p>'},
-    {id:18,badge:'Defence',bc:'b-green',img:'https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=700&q=80',title:'Indian Army Agniveer 2025: Notification released',time:'🕐 5 hours ago',views:'👁 3.2L',content:'<p>Indian Army Agniveer 2025 notification out. 40,000 posts. Age 17.5 to 21 years. Last date February 28.</p>'},
-    {id:19,badge:'Private Jobs',bc:'b-orange',img:'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80',title:'TCS, Infosys, Wipro hiring 1 lakh plus freshers — 4-8 LPA',time:'🕐 8 hours ago',views:'👁 7.8L',content:'<p>TCS, Infosys and Wipro announced hiring over 1 lakh freshers in 2025. B.Tech, BCA, MCA graduates can apply. Salary 4 to 8 LPA.</p>'}
-  ]
-};
-
-// OPEN NEWS MODAL
-function openNews(id) {
-  var data = newsData[currentLang] || newsData['hi'];
-  var item = null;
-  for (var i = 0; i < data.length; i++) {
-    if (data[i].id === id) { item = data[i]; break; }
-  }
-  if (!item) return;
-  var img = document.getElementById('nmImg');
-  img.src = item.img;
-  img.style.display = 'block';
-  var badge = document.getElementById('nmBadge');
-  badge.textContent = item.badge;
-  badge.className = 'badge ' + (item.bc || '');
-  document.getElementById('nmTitle').textContent = item.title;
-  document.getElementById('nmTime').textContent = item.time;
-  document.getElementById('nmViews').textContent = item.views;
-  document.getElementById('nmContent').innerHTML = item.content;
-  document.getElementById('newsModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeNews() {
-  document.getElementById('newsModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// LANGUAGE
 function setLang(lang, btn) {
   currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  // Update buttons
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('[data-hi]').forEach(function(el) {
-    var txt = el.getAttribute('data-' + lang);
+  // Update all elements with data-hi / data-en
+  document.querySelectorAll('[data-hi]').forEach(el => {
+    const txt = el.getAttribute('data-' + lang);
     if (txt) el.textContent = txt;
   });
-  document.querySelectorAll('[data-hi-placeholder]').forEach(function(el) {
-    var ph = el.getAttribute('data-' + lang + '-placeholder');
+  // Update placeholders
+  document.querySelectorAll('[data-hi-placeholder]').forEach(el => {
+    const ph = el.getAttribute('data-' + lang + '-placeholder');
     if (ph) el.placeholder = ph;
   });
-  var si = document.getElementById('searchInput');
-  if (si) si.placeholder = lang === 'hi' ? 'खबर खोजें...' : 'Search news...';
+  // Update search placeholder
+  const si = document.getElementById('searchInput');
+  si.placeholder = lang === 'hi' ? 'खबर खोजें...' : 'Search news...';
+  // Update html lang attr
+  document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
 }
 
-// NAV
+// ========== NAV ==========
 function setNav(el) {
-  document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
   el.classList.add('active');
 }
 
-// ADMIN / SEARCH MODALS
+// ========== MODALS ==========
 function openAdmin() { document.getElementById('adminModal').classList.add('open'); }
 function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
 function openSearch() {
   document.getElementById('searchModal').classList.add('open');
-  setTimeout(function() { document.getElementById('searchInput').focus(); }, 100);
+  setTimeout(() => document.getElementById('searchInput').focus(), 100);
 }
 function closeSearch() { document.getElementById('searchModal').classList.remove('open'); }
 function publishNews() {
-  var t = document.getElementById('newsTitle').value;
-  var cat = document.getElementById('newsCat').value;
-  if (!t || !cat) {
-    alert(currentLang === 'hi' ? 'Title aur Category zaroor bharein!' : 'Please fill Title and Category!');
+  const t = document.getElementById('newsTitle').value;
+  const c = document.getElementById('newsCat').value;
+  if (!t || !c) {
+    alert(currentLang === 'hi' ? 'कृपया Title और Category जरूर भरें!' : 'Please fill Title and Category!');
     return;
   }
-  alert('News published: ' + t);
+  alert((currentLang === 'hi' ? '✅ खबर सफलतापूर्वक Publish हो गई!
+
+' : '✅ News Published Successfully!
+
+') + '"' + t + '"');
   closeAdmin();
 }
 
-// KEYBOARD + CLICK OUTSIDE
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeAdmin(); closeSearch(); closeNews(); }
+// ========== KEYBOARD ==========
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeAdmin(); closeSearch(); }
 });
-window.addEventListener('load', function() {
-  document.getElementById('adminModal').addEventListener('click', function(e) { if (e.target === this) closeAdmin(); });
-  document.getElementById('searchModal').addEventListener('click', function(e) { if (e.target === this) closeSearch(); });
-  document.getElementById('newsModal').addEventListener('click', function(e) { if (e.target === this) closeNews(); });
-});
+document.getElementById('adminModal').addEventListener('click', function(e) { if(e.target===this) closeAdmin(); });
+document.getElementById('searchModal').addEventListener('click', function(e) { if(e.target===this) closeSearch(); });
 </script>
-</body>
-</html>
+
+<iframe frameborder="0" scrolling="no" style="background-color: transparent; border: 0px; display: none;"></iframe><div id="GOOGLE_INPUT_CHEXT_FLAG" input="" input_stat="{&quot;tlang&quot;:true,&quot;tsbc&quot;:true,&quot;pun&quot;:true,&quot;mk&quot;:true,&quot;ss&quot;:true}" style="display: none;"></div><div id="claude-agent-glow-border" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483646; opacity: 1; transition: opacity 0.3s ease-in-out; animation: 2s ease-in-out 0s infinite normal none running claude-pulse; box-shadow: rgba(217, 119, 87, 0.5) 0px 0px 10px inset, rgba(217, 119, 87, 0.3) 0px 0px 20px inset, rgba(217, 119, 87, 0.1) 0px 0px 30px inset;"></div><div id="claude-agent-stop-container" style="position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); justify-content: center; align-items: center; pointer-events: none; z-index: 2147483647;"><button id="claude-agent-stop-button" style="position: relative; transform: translateY(0px); padding: 12px 16px; background: rgb(250, 249, 245); color: rgb(20, 20, 19); border: 0.5px solid rgba(31, 30, 29, 0.4); border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: rgba(217, 119, 87, 0.24) 0px 40px 80px, rgba(217, 119, 87, 0.24) 0px 4px 14px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; user-select: none; pointer-events: auto; white-space: nowrap; margin: 0px auto;">
+      <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" style="margin-right: 12px; vertical-align: middle;">
+        <path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm40-112v56a12,12,0,0,1-12,12H100a12,12,0,0,1-12-12V100a12,12,0,0,1,12-12h56A12,12,0,0,1,168,100Z"></path>
+      </svg>
+      <span style="vertical-align: middle;">Stop Claude</span>
+    </button></div>
+  <style>
+  .news-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px}
+  .news-modal.open{display:flex}
+  .nm-box{background:#1a1d23;border:1px solid #2a2f3a;border-radius:20px;width:720px;max-width:96vw;max-height:90vh;overflow-y:auto;position:relative}
+  .nm-img{width:100%;height:300px;object-fit:cover;border-radius:20px 20px 0 0;display:block}
+  .nm-body{padding:28px}
+  .nm-title{font-size:22px;font-weight:900;color:#f0f0f0;line-height:1.4;margin:10px 0 14px;font-family:'Playfair Display',serif}
+  .nm-meta{display:flex;gap:20px;font-size:13px;color:#8a8f9e;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #2a2f3a;flex-wrap:wrap}
+  .nm-content{font-size:15px;color:#ccc;line-height:1.85}
+  .nm-content p{margin-bottom:14px}
+  .nm-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,0.7);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:20px;color:white;display:flex;align-items:center;justify-content:center}
+  </style>
+  <div class="news-modal" id="newsModal">
+    <div class="nm-box">
+      <button class="nm-close" onclick="closeNews()">✕</button>
+      <img id="nmImg" class="nm-img" src="https://images.unsplash.com/photo-1555374018-13a8994ab246?w=700&amp;q=80" alt="">
+      <div class="nm-body">
+        <div style="margin-bottom:10px"><span id="nmBadge" class="badge ">राष्ट्रीय</span></div>
+        <div id="nmTitle" class="nm-title">संसद में पास हुआ नया बिल — देश भर में होंगे बड़े बदलाव</div>
+        <div class="nm-meta"><span id="nmTime">🕐 4 घंटे पहले</span><span>✍️ NewsKiNews Desk</span><span id="nmViews">👁 67K</span></div>
+        <div id="nmContent" class="nm-content"><p>नई दिल्ली: लोकसभा में ऐतिहासिक बिल पास हुआ।</p></div>
+      </div>
+    </div>
+  </div></body></html>
