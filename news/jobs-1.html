@@ -192,7 +192,7 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
 .nm-close:hover { background:var(--red); }
 
 
-/* ===== MOBILE RESPONSIVE ===== */
+
 @media(max-width:768px){
   .header-top{padding:10px 16px;gap:8px;}
   .logo-text .name{font-size:18px;}
@@ -217,6 +217,41 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
   .art-title{font-size:18px !important;}
   .art-hero-img{max-height:200px;}
   .art-breadcrumb{font-size:11px;}
+}
+
+
+/* ===== ARTICLE MOBILE FIX ===== */
+@media(max-width:768px){
+  header { position: sticky; top: 0; z-index: 1000; }
+  .header-top { padding: 8px 12px !important; gap: 8px; }
+  .logo img { width: 32px !important; height: 32px !important; }
+  .logo-text .name { font-size: 15px !important; letter-spacing: -1px; }
+  .logo-text .tagline { display: none !important; }
+  .lang-btn { padding: 4px 8px !important; font-size: 11px !important; }
+  .nav-inner { padding: 0 8px !important; overflow-x: auto; scrollbar-width: none; }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-item { padding: 8px 10px !important; font-size: 11px !important; white-space: nowrap; }
+  /* Article */
+  .art-container { padding: 16px 12px; }
+  .art-title { font-size: 19px !important; line-height: 1.35; }
+  .art-meta { gap: 8px; padding: 12px 0; }
+  .art-meta-item { font-size: 11px; }
+  .art-hero-img { max-height: 220px; border-radius: 8px; }
+  .art-img-caption { font-size: 11px; }
+  .art-body { font-size: 15px; line-height: 1.8; }
+  .art-body h3 { font-size: 17px; }
+  .art-tags { gap: 6px; }
+  .art-tag { padding: 4px 10px; font-size: 11px; }
+  .art-share { padding: 14px; }
+  .art-share-btns { gap: 8px; }
+  .art-share-btn { padding: 8px 14px; font-size: 12px; }
+  .related-grid { grid-template-columns: 1fr; gap: 10px; }
+  .back-btn { padding: 8px 12px; font-size: 12px; }
+  .art-breadcrumb { font-size: 11px; gap: 4px; margin-bottom: 12px; }
+}
+@media(max-width:400px){
+  .art-title { font-size: 17px !important; }
+  .art-hero-img { max-height: 180px; }
 }
 
 </style>
