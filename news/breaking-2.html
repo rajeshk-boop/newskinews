@@ -191,6 +191,34 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
 .nm-close { position:absolute; top:14px; right:14px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:50%; width:36px; height:36px; cursor:pointer; font-size:18px; color:white; display:flex; align-items:center; justify-content:center; z-index:10; }
 .nm-close:hover { background:var(--red); }
 
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media(max-width:768px){
+  .header-top{padding:10px 16px;gap:8px;}
+  .logo-text .name{font-size:18px;}
+  .logo-text .tagline{display:none;}
+  .lang-btn{padding:5px 10px;font-size:12px;}
+  nav{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .nav-inner{padding:0 10px !important;}
+  .nav-item{padding:10px 10px !important;font-size:12px !important;white-space:nowrap;}
+  .art-container{padding:20px 16px;}
+  .art-title{font-size:20px !important;}
+  .art-meta{gap:10px;}
+  .art-meta-item{font-size:12px;}
+  .art-hero-img{max-height:240px;}
+  .art-body{font-size:15px;line-height:1.8;}
+  .art-body h3{font-size:18px;}
+  .art-share-btns{gap:8px;}
+  .art-share-btn{padding:8px 14px;font-size:12px;}
+  .related-grid{grid-template-columns:1fr;}
+  .back-btn{font-size:13px;padding:8px 14px;}
+}
+@media(max-width:480px){
+  .art-title{font-size:18px !important;}
+  .art-hero-img{max-height:200px;}
+  .art-breadcrumb{font-size:11px;}
+}
+
 </style>
 <style>
 .nav-item{text-decoration:none;}

@@ -189,6 +189,39 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:48
 .nm-close { position:absolute; top:14px; right:14px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:50%; width:36px; height:36px; cursor:pointer; font-size:18px; color:white; display:flex; align-items:center; justify-content:center; z-index:10; }
 .nm-close:hover { background:var(--red); }
 
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media(max-width:768px){
+  .header-top{padding:10px 16px;gap:8px;}
+  .logo-text .name{font-size:18px;}
+  .logo-text .tagline{display:none;}
+  .search-btn{font-size:12px;padding:6px 10px;}
+  .lang-btn{padding:5px 10px;font-size:12px;}
+  nav{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .nav-inner{padding:0 10px !important;gap:2px;}
+  .nav-item{padding:10px 10px !important;font-size:12px !important;white-space:nowrap;}
+  .ticker-bar{font-size:12px;}
+  .cat-inner{flex-direction:column;gap:12px;padding:16px !important;margin:0 !important;}
+  main{padding:16px 0 !important;}
+  .news-section{padding:0 16px;}
+  .section-title{font-size:18px;}
+  .news-grid{grid-template-columns:1fr !important;}
+  .news-card{display:flex;flex-direction:row;gap:10px;padding:10px;}
+  .nc-img-wrap{width:110px;min-width:110px;height:80px;border-radius:8px;overflow:hidden;}
+  .nc-img-wrap img{width:110px;height:80px;object-fit:cover;}
+  .nc-body{flex:1;padding:0;}
+  .nc-title{font-size:13px;line-height:1.4;}
+  .nc-excerpt{display:none;}
+  .nc-footer{font-size:11px;}
+  .admin-fab{bottom:16px;right:16px;padding:10px 16px;font-size:13px;}
+}
+@media(max-width:480px){
+  .news-card{flex-direction:column;}
+  .nc-img-wrap{width:100%;min-width:100%;height:160px;}
+  .nc-img-wrap img{width:100%;height:160px;}
+  .nc-excerpt{display:block;}
+}
+
 </style>
 <style>.nav-item{text-decoration:none;} .cat-hdr{background:#111317;border-bottom:1px solid #2a2f3a;} .cat-inner{max-width:1400px;margin:0 auto;padding:28px 40px;border-left:5px solid #FF9933;margin-left:40px;margin-right:40px;display:flex;align-items:center;justify-content:space-between;}</style>
 </head>
